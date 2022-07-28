@@ -10,7 +10,7 @@ body,
 input,
 textarea,
 button {
-    @apply text-gray-500 text-xs font-medium font-sans;
+    @apply text-gray-500 text-[1rem] font-medium font-sans;
 }
 
 h1,
