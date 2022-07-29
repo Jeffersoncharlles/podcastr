@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "date-fns": "^2.29.1",
+    "miragejs": "^0.1.45",
     "next": "12.2.3",
     "phosphor-react": "^1.4.1",
     "react": "18.2.0",

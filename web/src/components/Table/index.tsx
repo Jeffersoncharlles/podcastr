@@ -40,10 +40,11 @@ export const Table = ({ allEpisodes }: Props) => {
                             </Link>
                         </td>
                         <td className="py-3 px-4 border-b border-gray-200 text-sm ">{ep.members}</td>
-                        <td className='py-3 px-4 border-b border-gray-200 text-sm w-28'>{ep.publishedAt}</td>
-                        <td className='py-3 px-4 border-b border-gray-200 text-sm '>{ep.file.durationAsString}</td>
+                        <td title="data da criação" className='py-3 px-4 border-b border-gray-200 text-sm w-28'>{ep.publishedAt}</td>
+                        <td title="duração do programa" className='py-3 px-4 border-b border-gray-200 text-sm '>{ep.file.durationAsString}</td>
                         <td className="py-3 px-4 border-b border-gray-200 text-sm ">
                             <button
+                                title="Tocar"
                                 type='button'
                                 className='
                                     w-8 h-8 

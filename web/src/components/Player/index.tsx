@@ -1,13 +1,17 @@
 import { Play, Repeat, Shuffle, SkipBack, SkipForward } from "phosphor-react";
+import { usePlayerContext } from "../../context/PlayerContext";
 
 
 export const Player = () => {
+    const { episodeList, currentEpisodeIndex } = usePlayerContext()
+
+    const episode = episodeList[currentEpisodeIndex]
 
     return (
         <div className="w-96 h-screen  py-12 px-16 bg-[#8257E5] text-white flex flex-col items-center justify-between">
             <header className="flex items-center gap-4">
                 <img src="/playing.svg" alt="tocando agora" />
-                <strong className="font-display font-semibold">Tocando agora</strong>
+                <strong className="font-display font-semibold">Tocando agora {episode?.title}</strong>
             </header>
 
             <div className="

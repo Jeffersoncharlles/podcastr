@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Play } from "phosphor-react"
+import { usePlayerContext } from "../../context/PlayerContext";
 
 interface Props {
     ep: {
@@ -10,12 +11,27 @@ interface Props {
         members: string
         publishedAt: string
         file: {
+            duration: number
+            url: string
             durationAsString: string
         }
     }
 }
 
 export const Card = ({ ep }: Props) => {
+    const { play } = usePlayerContext()
+
+    const handlePlayer = (ep: any) => {
+        const episode = {
+            title: ep.title,
+            members: ep.members,
+            thumbnail: ep.thumbnail,
+            duration: ep.file.duration,
+            url: ep.file.url
+
+        }
+        play(episode)
+    }
 
     return (
         <li className="
@@ -35,7 +51,7 @@ export const Card = ({ ep }: Props) => {
             />
 
             <div className="flex-1 ml-4">
-                <Link href={`/episodes/${ep.id}`}>
+                <Link href={`/episodes/${ep.id}`} aria-label={ep.title}>
                     <a className='block text-gray-800 font-display leading-relaxed hover:underline'>{ep.title}</a>
                 </Link>
                 <p className='text-sm mt-2 max-w-[70%] whitespace-nowrap overflow-hidden text-ellipsis'>{ep.members}</p>
@@ -57,7 +73,10 @@ export const Card = ({ ep }: Props) => {
                 text-sm
                 '>{ep.file.durationAsString}</span>
             </div>
-            <button type='button'
+            <button
+                onClick={() => handlePlayer(ep)}
+                title="Tocar"
+                type='button'
                 className='
                 absolute 
                 right-8 bottom-8 
