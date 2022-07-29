@@ -1,11 +1,13 @@
 import type { GetStaticProps } from 'next'
+
 import Image from 'next/image';
+import { Play } from 'phosphor-react';
 import { api } from '../lib/api';
 import { format, parseISO } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR';
 import { convertDurationToTimeString } from '../utils/convertDurationTime';
-import { Play } from 'phosphor-react';
 import { Card } from '../components/Card';
+import { Table } from '../components/Table';
 
 export interface IEpisode {
   id: string;
@@ -30,22 +32,20 @@ type HomeProps = {
 const Home = ({ allEpisodes, latestEpisodes }: HomeProps) => {
 
   return (
-    <div className='px-16 h-[calc(100%-7rem)]  overflow-y-scroll'>
+    <div className='px-16 py-0 h-[calc(100vh-7rem)] overflow-y-scroll'>
       <section className=''>
         <h2 className='mt-12 mb-6'>Últimos lançamentos</h2>
         <ul className="grid grid-cols-2 gap-6">
+
           {latestEpisodes.map((ep) => (
             <Card key={ep.id} ep={ep} />
           ))}
+
         </ul>
       </section>
-      <section className=''>
+      <section className='pb-8'>
         <h2 className='mt-12 mb-6'>Todos os episódios</h2>
-
-        <table>
-
-        </table>
-
+        <Table allEpisodes={allEpisodes} />
       </section>
 
     </div>

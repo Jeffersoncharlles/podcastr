@@ -31,7 +31,12 @@ export const Player = () => {
                     </div>
                     <span className="inline-block w-16 text-center">00:00</span>
                 </div>
-                <div className="flex items-center justify-center mt-10 gap-6 text-[0]">
+                <div className="
+                        flex items-center justify-center
+                        mt-10 gap-6 
+                        text-[0]
+                        "
+                >
                     <button type="button">
                         <Shuffle size={24} weight="bold" color="#fff" />
                     </button>

@@ -1,8 +1,10 @@
 import Image from "next/image"
+import Link from "next/link"
 import { Play } from "phosphor-react"
 
 interface Props {
     ep: {
+        id: string;
         thumbnail: string
         title: string
         members: string
@@ -33,7 +35,9 @@ export const Card = ({ ep }: Props) => {
             />
 
             <div className="flex-1 ml-4">
-                <a href="" className='block text-gray-800 font-display leading-relaxed hover:underline'>{ep.title}</a>
+                <Link href={`/episodes/${ep.id}`}>
+                    <a className='block text-gray-800 font-display leading-relaxed hover:underline'>{ep.title}</a>
+                </Link>
                 <p className='text-sm mt-2 max-w-[70%] whitespace-nowrap overflow-hidden text-ellipsis'>{ep.members}</p>
                 <span className='
                 inline-block mt-2 text-sm
@@ -61,6 +65,7 @@ export const Card = ({ ep }: Props) => {
                 border-spacing-2 
                  border-gray-100 
                 rounded-xl
+                text-[0]
                 flex
                 items-center
                 justify-center

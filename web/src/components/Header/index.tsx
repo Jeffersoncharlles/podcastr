@@ -14,7 +14,7 @@ export const Header = () => {
             border-b-[1.px] border-gray-100
             "
         >
-            <img src="./logo.svg" alt="Podcastr" />
+            <img src="logo.svg" alt="Podcastr" />
 
             <p className="ml-8 py-1 px-8 border-l-2  border-gray-100">O melhor para você ouvir, sempre</p>
 
