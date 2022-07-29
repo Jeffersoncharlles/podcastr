@@ -30,3 +30,11 @@ h1 {
 h2 {
     @apply text-2xl
 }
+
+.description {
+    @apply mt-8 text-sm leading-7 text-gray-800 antialiased;
+}
+
+.description>p {
+    @apply my-6;
+}

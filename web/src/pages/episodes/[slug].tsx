@@ -2,6 +2,7 @@ import { format, parseISO } from "date-fns"
 import ptBR from "date-fns/locale/pt-BR"
 import { GetStaticPaths, GetStaticProps } from "next"
 import Image from "next/image"
+import Link from "next/link"
 import { useRouter } from "next/router"
 import { CaretLeft, Play } from "phosphor-react"
 import { IEpisode } from ".."
@@ -18,30 +19,82 @@ const Episode = ({ episode }: TEpisode) => {
 
 
     return (
-        <div className="">
-            <div className="">
-                <button type="button" className="">
-                    <CaretLeft weight="regular" />
-                </button>
+        <div className=" max-w-3xl px-12 py-8 my-0 mx-auto h-[calc(100vh-7rem)] overflow-y-hidden">
+            <div className="relative">
+                <Link href={"/"}>
+                    <button
+                        type="button"
+                        className="
+                        translate-y-[-50%]
+                        translate-x-[-50%]
+                        left-0 top-1/2 
+                        w-12 h-12 bg-[#8257E5] 
+                        rounded-xl 
+                        border-[0px] 
+                        absolute z-10 
+                        text-[0px] 
+                        transition-colors hover:brightness-90
+                        flex items-center justify-center 
+                    "
+                    >
+                        <CaretLeft weight="regular" size={24} color="#ffff" />
+                    </button>
+                </Link>
                 <Image
                     width={700}
                     height={160}
                     src={episode.thumbnail}
                     objectFit="cover"
-                    className=""
+                    className="rounded-2xl"
                 />
-                <button type="button" className="">
-                    <Play size={24} color="#04D361" weight='fill' />
+                <button
+                    type="button"
+                    className="
+                        translate-y-[-50%]
+                        translate-x-[50%]
+                        right-0 top-1/2 
+                        bg-[#04D361]  w-12 h-12 
+                        rounded-xl 
+                        border-[0px] 
+                        absolute z-10 
+                        text-[0px] 
+                        hover:brightness-90
+                        flex items-center justify-center 
+                    "
+                >
+                    <Play size={24} color="#ffff" weight='fill' />
                 </button>
             </div>
-            <header className="">
-                <h1 className="">{episode.title}</h1>
-                <span className="">{episode.members}</span>
-                <span className="">{episode.publishedAt}</span>
-                <span className="">{episode.file.durationAsString}</span>
+            <header className="pb-4 border-b border-gray-200">
+                <h1 className="mt-8 mb-6">{episode.title}</h1>
+                <span className="inline-block text-sm relative">{episode.members}</span>
+                <span className="
+                    inline-block text-sm ml-4 pl-4 relative
+                    after:w-[4px] 
+                    after:h-[4px] 
+                    after:bg-[#1212]
+                    after:rounded-sm 
+                    after:left-0 
+                    after:top-[50%] 
+                    after:absolute
+                    "
+                >{episode.publishedAt}</span>
+                <span className="
+                    inline-block text-sm ml-4 pl-4  relative
+                    after:w-[4px] 
+                    after:h-[4px] 
+                    after:bg-[#1212]
+                    after:rounded-sm 
+                    after:left-0 
+                    after:top-[50%] 
+                    after:absolute"
+                >{episode.file.durationAsString}</span>
             </header>
 
-            <div className="" dangerouslySetInnerHTML={{ __html: episode.description }} />
+            <div
+                className="description"
+                dangerouslySetInnerHTML={{ __html: episode.description }}
+            />
 
 
         </div>
