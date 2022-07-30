@@ -15,6 +15,7 @@
     "miragejs": "^0.1.45",
     "next": "12.2.3",
     "phosphor-react": "^1.4.1",
+    "rc-slider": "^10.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
