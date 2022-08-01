@@ -7,7 +7,7 @@ import { useEffect, useRef } from "react";
 
 
 export const Player = () => {
-    const { episodeList, currentEpisodeIndex, isPlaying, setPlayState } = usePlayerContext()
+    const { episodeList, currentEpisodeIndex, isPlaying, setPlayState, isLooping } = usePlayerContext()
     const audioRef = useRef<HTMLAudioElement>(null)
 
     const episode = episodeList[currentEpisodeIndex]
@@ -83,6 +83,7 @@ export const Player = () => {
                         onPlay={() => setPlayState(true)}
                         onPause={() => setPlayState(false)}
                         ref={audioRef}
+                        loop={isLooping}
                     />
                 )}
 

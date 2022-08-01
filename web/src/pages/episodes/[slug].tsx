@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { CaretLeft, Play } from "phosphor-react"
 import { IEpisode } from ".."
+import { usePlayerContext } from "../../context/PlayerContext"
 import { api } from "../../lib/api"
 import { convertDurationToTimeString } from "../../utils/convertDurationTime"
 
@@ -15,6 +16,7 @@ type TEpisode = {
 
 
 const Episode = ({ episode }: TEpisode) => {
+    const { play } = usePlayerContext()
 
 
     return (
@@ -51,6 +53,7 @@ const Episode = ({ episode }: TEpisode) => {
                         alt={episode.title}
                     />
                     <button
+                        onClick={() => play(episode)}
                         title="Tocar"
                         type="button"
                         className="

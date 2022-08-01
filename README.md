@@ -13,9 +13,7 @@
 </p>
 
 <h1 align='center'>
-  <!-- <img src='./screen/093358.png' width="280"> -->
-  <!-- <img src='./printscreen/postfull.png' width="280">
-  <img src='./printscreen/postslist.png' width="280"> -->
+  <img src='./screen/6HSwAb3aVQ.png' width="480">
 </h1>
 
 ## Getting Started PodCastR
@@ -23,9 +21,11 @@
 First, run the development server:
 
 ```bash
-npm run dev
+npm run dev 
+npm run server
 # or
 yarn dev
+yarn server
 ```
 ## 🚀 Technologies:
 

@@ -19,12 +19,18 @@ interface IPlayerContext {
     episodeList: Episode[]
     currentEpisodeIndex: number
     isPlaying: boolean
+    hasPrevious: boolean
+    hasNext: boolean
+    isLooping: boolean
+    isShuffling: boolean
     play: (episode: Episode) => void
     togglePlay: () => void
     setPlayState: (state: boolean) => void
     playList: (list: Episode[], currentEp: number) => void
     playNext: () => void
     playPrevious: () => void
+    toggleLoop: () => void
+    toggleShuffle: () => void
 }
 
 
@@ -36,7 +42,10 @@ export const PlayerProvider = ({ children }: { children: React.ReactNode }) => {
     const [episodeList, setEpisodeList] = useState<Episode[]>([])
     const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
+    const [isLooping, setIsLooping] = useState(false)
+    const [isShuffling, setIsShuffling] = useState(false)
 
+    //===========================================================================================//
     const play = (episode: Episode) => {
         setEpisodeList([episode])
         setCurrentEpisodeIndex(0)
@@ -48,33 +57,45 @@ export const PlayerProvider = ({ children }: { children: React.ReactNode }) => {
         setCurrentEpisodeIndex(currentEp);
         setIsPlaying(true)
     }
-
+    //===========================================================================================//
+    //===========================================================================================//
     const togglePlay = () => {
         setIsPlaying(!isPlaying)
     }
     const setPlayState = (state: boolean) => {
         setIsPlaying(state)
     }
-
+    //===========================================================================================//
+    const hasPrevious = currentEpisodeIndex > 0
+    const hasNext = (currentEpisodeIndex + 1) < episodeList.length
     const playNext = () => {
+
         const nextEpisodeIndex = currentEpisodeIndex + 1
         if (nextEpisodeIndex >= episodeList.length) {
             setCurrentEpisodeIndex((state) => state + 1)
         }
     }
-
     const playPrevious = () => {
         if (currentEpisodeIndex > 0) {
             setCurrentEpisodeIndex(state => state - 1)
         }
 
     }
+    //===========================================================================================//
+    //===========================================================================================//
+    const toggleLoop = () => {
+        setIsLooping(!isLooping)
+    }
+    const toggleShuffle = () => {
+        setIsShuffling(!isShuffling)
+    }
 
     return (
         <PlayerContext.Provider value={{
             episodeList, currentEpisodeIndex, isPlaying,
+            hasNext, hasPrevious, isLooping, isShuffling,
             play, togglePlay, setPlayState, playList, playNext,
-            playPrevious,
+            playPrevious, toggleLoop, toggleShuffle
         }}>
             {children}
         </PlayerContext.Provider>
