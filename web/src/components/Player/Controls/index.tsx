@@ -6,7 +6,7 @@ interface Props {
 }
 
 export const Controls = ({ episode }: Props) => {
-    const { togglePlay, isPlaying } = usePlayerContext()
+    const { togglePlay, isPlaying, playNext, playPrevious } = usePlayerContext()
 
     return (
         <div className="
@@ -18,7 +18,7 @@ export const Controls = ({ episode }: Props) => {
             <button type="button" disabled={!episode} className="disabled:cursor-not-allowed">
                 <Shuffle size={24} weight="bold" color="#fff" />
             </button>
-            <button type="button" disabled={!episode} className="disabled:cursor-not-allowed">
+            <button type="button" disabled={!episode} className="disabled:cursor-not-allowed" onClick={() => playPrevious()}>
                 <SkipBack size={24} weight="bold" color="#fff" />
             </button>
             <button
@@ -37,7 +37,7 @@ export const Controls = ({ episode }: Props) => {
                 {isPlaying ? <Pause size={24} weight="bold" color="#fff" /> : <Play size={24} weight="bold" color="#fff" />}
 
             </button>
-            <button type="button" disabled={!episode} className="disabled:cursor-not-allowed">
+            <button type="button" disabled={!episode} className="disabled:cursor-not-allowed" onClick={() => playNext()}>
                 <SkipForward size={24} weight="bold" color="#fff" />
             </button>
             <button type="button" disabled={!episode} className="disabled:cursor-not-allowed">

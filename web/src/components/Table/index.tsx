@@ -2,12 +2,20 @@ import { Play } from 'phosphor-react';
 import Image from 'next/image';
 import { IEpisode } from '../../pages';
 import Link from 'next/link';
+import { usePlayerContext } from '../../context/PlayerContext';
 
 interface Props {
     allEpisodes: IEpisode[]
+    episodeList: IEpisode[]
+    latestEpisodes: IEpisode[]
 }
 
-export const Table = ({ allEpisodes }: Props) => {
+export const Table = ({ allEpisodes, episodeList, latestEpisodes }: Props) => {
+    const { play, playList } = usePlayerContext()
+
+    const handlePlayer = (index: number) => {
+        playList(episodeList, index + latestEpisodes.length)
+    }
 
     return (
         <table className='w-full' cellSpacing={0} >
@@ -22,7 +30,7 @@ export const Table = ({ allEpisodes }: Props) => {
                 </tr>
             </thead>
             <tbody className=''>
-                {allEpisodes.map(ep => (
+                {allEpisodes.map((ep, index) => (
                     <tr className="" key={ep.id}>
                         <td className="py-3 px-4 border-b border-gray-200 text-sm w-20">
                             <Image
@@ -44,6 +52,7 @@ export const Table = ({ allEpisodes }: Props) => {
                         <td title="duração do programa" className='py-3 px-4 border-b border-gray-200 text-sm '>{ep.file.durationAsString}</td>
                         <td className="py-3 px-4 border-b border-gray-200 text-sm ">
                             <button
+                                onClick={() => handlePlayer(index)}
                                 title="Tocar"
                                 type='button'
                                 className='

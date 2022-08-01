@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Pause, Play, Repeat, Shuffle, SkipBack, SkipForward } from "phosphor-react";
 import { usePlayerContext } from "../../context/PlayerContext";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css'
@@ -79,7 +78,7 @@ export const Player = () => {
 
                 {episode && (
                     <audio
-                        src={episode.url}
+                        src={episode?.file?.url}
                         autoPlay
                         onPlay={() => setPlayState(true)}
                         onPause={() => setPlayState(false)}

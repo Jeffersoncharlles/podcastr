@@ -31,7 +31,10 @@ type HomeProps = {
 }
 
 const Home = ({ allEpisodes, latestEpisodes }: HomeProps) => {
+  const { playList } = usePlayerContext()
 
+
+  const episodeList = [...latestEpisodes, ...allEpisodes]
 
   return (
     <div className='px-16 py-0 h-[calc(100vh-7rem)] overflow-y-scroll'>
@@ -39,15 +42,15 @@ const Home = ({ allEpisodes, latestEpisodes }: HomeProps) => {
         <h2 className='mt-12 mb-6'>Últimos lançamentos</h2>
         <ul className="grid grid-cols-2 gap-6">
 
-          {latestEpisodes.map((ep) => (
-            <Card key={ep.id} ep={ep} />
+          {latestEpisodes.map((ep, index) => (
+            <Card key={ep.id} ep={ep} episodeList={episodeList} index={index} />
           ))}
 
         </ul>
       </section>
       <section className='pb-8'>
         <h2 className='mt-12 mb-6'>Todos os episódios</h2>
-        <Table allEpisodes={allEpisodes} />
+        <Table allEpisodes={allEpisodes} episodeList={episodeList} latestEpisodes={latestEpisodes} />
       </section>
 
     </div>

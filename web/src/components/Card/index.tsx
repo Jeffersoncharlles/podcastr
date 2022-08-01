@@ -3,7 +3,9 @@ import Link from "next/link"
 import { Play } from "phosphor-react"
 import { usePlayerContext } from "../../context/PlayerContext";
 
+
 interface Props {
+    episodeList: any
     ep: {
         id: string;
         thumbnail: string
@@ -16,10 +18,12 @@ interface Props {
             durationAsString: string
         }
     }
+    index: number
 }
 
-export const Card = ({ ep }: Props) => {
-    const { play } = usePlayerContext()
+export const Card = ({ ep, episodeList, index }: Props) => {
+    const { play, playList } = usePlayerContext()
+
 
     const handlePlayer = (ep: any) => {
         const episode = {
@@ -30,7 +34,8 @@ export const Card = ({ ep }: Props) => {
             url: ep.file.url
 
         }
-        play(episode)
+        // play(ep)
+        playList(episodeList, index)
     }
 
     return (
