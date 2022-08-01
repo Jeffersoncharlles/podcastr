@@ -31,6 +31,7 @@ interface IPlayerContext {
     playPrevious: () => void
     toggleLoop: () => void
     toggleShuffle: () => void
+    handleEpisodeEnded: () => void
 }
 
 
@@ -67,19 +68,34 @@ export const PlayerProvider = ({ children }: { children: React.ReactNode }) => {
     }
     //===========================================================================================//
     const hasPrevious = currentEpisodeIndex > 0
-    const hasNext = (currentEpisodeIndex + 1) < episodeList.length
+    const hasNext = isShuffling || (currentEpisodeIndex + 1) < episodeList.length
     const playNext = () => {
-
-        const nextEpisodeIndex = currentEpisodeIndex + 1
-        if (nextEpisodeIndex >= episodeList.length) {
+        if (isShuffling) {
+            const nextRandomEpisodeIndex = Math.floor(Math.random() * episodeList.length)
+            setCurrentEpisodeIndex(nextRandomEpisodeIndex)
+        } else if (hasNext) {
             setCurrentEpisodeIndex((state) => state + 1)
         }
     }
     const playPrevious = () => {
+
         if (currentEpisodeIndex > 0) {
             setCurrentEpisodeIndex(state => state - 1)
         }
 
+    }
+
+    const handleEpisodeEnded = () => {
+        if (hasNext) {
+            playNext()
+        } else {
+            clearPlayerState()
+        }
+    }
+
+    const clearPlayerState = () => {
+        setEpisodeList([])
+        setCurrentEpisodeIndex(0)
     }
     //===========================================================================================//
     //===========================================================================================//
@@ -89,13 +105,15 @@ export const PlayerProvider = ({ children }: { children: React.ReactNode }) => {
     const toggleShuffle = () => {
         setIsShuffling(!isShuffling)
     }
+    //===========================================================================================//
+    //===========================================================================================//
 
     return (
         <PlayerContext.Provider value={{
             episodeList, currentEpisodeIndex, isPlaying,
             hasNext, hasPrevious, isLooping, isShuffling,
             play, togglePlay, setPlayState, playList, playNext,
-            playPrevious, toggleLoop, toggleShuffle
+            playPrevious, toggleLoop, toggleShuffle, handleEpisodeEnded
         }}>
             {children}
         </PlayerContext.Provider>

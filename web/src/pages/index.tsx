@@ -9,6 +9,7 @@ import { convertDurationToTimeString } from '../utils/convertDurationTime';
 import { Card } from '../components/Card';
 import { Table } from '../components/Table';
 import { usePlayerContext } from '../context/PlayerContext';
+import Head from 'next/head';
 
 export interface IEpisode {
   id: string;
@@ -31,13 +32,13 @@ type HomeProps = {
 }
 
 const Home = ({ allEpisodes, latestEpisodes }: HomeProps) => {
-  const { playList } = usePlayerContext()
-
-
   const episodeList = [...latestEpisodes, ...allEpisodes]
 
   return (
     <div className='px-16 py-0 h-[calc(100vh-7rem)] overflow-y-scroll'>
+      <Head>
+        <title>Podcast</title>
+      </Head>
       <section className=''>
         <h2 className='mt-12 mb-6'>Últimos lançamentos</h2>
         <ul className="grid grid-cols-2 gap-6">

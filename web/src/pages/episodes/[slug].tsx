@@ -1,6 +1,7 @@
 import { format, parseISO } from "date-fns"
 import ptBR from "date-fns/locale/pt-BR"
 import { GetStaticPaths, GetStaticProps } from "next"
+import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import { CaretLeft, Play } from "phosphor-react"
@@ -21,6 +22,9 @@ const Episode = ({ episode }: TEpisode) => {
 
     return (
         <div className="w-full  overflow-y-scroll">
+            <Head>
+                <title>{episode.title}</title>
+            </Head>
             <div className=" max-w-3xl px-12 py-8 my-0 mx-auto h-[calc(100vh-7rem)] ">
                 <div className="relative">
                     <Link href={"/"}>
